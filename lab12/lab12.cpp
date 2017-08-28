@@ -1,8 +1,8 @@
-*/ Name: Jordan Williams
-* Class: CSCI 020
-* August 28 2017
-* Desc: ASCII Art
-/*
+/* Name: Jordan Williams
+ * Class: CSCI 020
+ * August 28 2017
+ * Desc: ASCII Art
+ */
 
 
 
