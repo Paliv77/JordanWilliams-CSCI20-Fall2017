@@ -8,7 +8,7 @@
 using namespace std;
 
 int main() {
-    float input_cash; //User input of cash
+    double input_cash; //User input of cash
     int dollars;
     int q;
     int d;
