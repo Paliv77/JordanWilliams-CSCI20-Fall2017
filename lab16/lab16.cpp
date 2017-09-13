@@ -17,7 +17,7 @@ struct portfolio {
 
 int main(){
   
-    portfolio a; //creates a new object
+    portfolio a; //creates a new object called 'a'
     
     cout << "Enter stock name: " << endl; //Asks for input and stores it in the object
     cin >> a.stock_name;
