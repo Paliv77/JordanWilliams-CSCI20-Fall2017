@@ -1,12 +1,12 @@
 /*Name: Jordan Williams
  *Date: 9/21/2017
  *Project: 2.2 Lab - Writing Functions
- *Desc: A random number generating program beween 1 - 100.
+ *Desc: A random number generating program between 1 - 100.
 */
 
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <cstdlib> //library has random number generator and arithmetics
+#include <ctime> //library has date and time functions for manipulation
 using namespace std;
 
 int RandomNumber () //function acts as a number generator
@@ -16,7 +16,6 @@ int RandomNumber () //function acts as a number generator
     cout << "Your number between 1 - 100 is: "
          << rand() % 100 +1; //Provides random number 1-100
 }
-
 
 int main() {
     
