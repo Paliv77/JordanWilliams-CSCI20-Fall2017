@@ -3,7 +3,7 @@
 *Lab: 2.5 Classes and Mutator functions
 *Date: 10/4/17
 *Desc: A program that creates a Book, then asks for user input to fill it. After,
-*       it will print out each object.
+*       it will print out each book(object).
 */
 #include <iostream>
 #include <string>
@@ -21,12 +21,11 @@ class Book {
         int GetCopyrightyear() const;//Accessor
         
         void print() { //prints out the complete object (book)
+            cout << "---------------------------------------" << endl; //boarder
             cout << "---------------------------------------" << endl;
-            cout << "---------------------------------------" << endl;
-            cout << "Your book title is: " << GetTitle() << endl;
-            cout << "The book's author is " << GetAuthor() << endl;
-            cout << "The copyright year is " << GetCopyrightyear() << endl;
-            
+            cout << "Your book title is: " << GetTitle() << endl; //gets the input from the GetTitle function
+            cout << "The book's author is " << GetAuthor() << endl; //gets the input from the GetAuthor function
+            cout << "The copyright year is " << GetCopyrightyear() << endl; //gets the input from the GetCopyrightyear function.
         }
     private: //private variables
         string title;
@@ -35,6 +34,7 @@ class Book {
 };
 
 void Book::SetTitle(string titleToSet) { //sets the private variable
+
     title = titleToSet;
 }
 
@@ -44,6 +44,7 @@ string Book::GetTitle() const { //can be called for the private variable
 }
 
 void Book::SetAuthor(string authorToSet) { //sets the private variable
+
     author = authorToSet;
 }
 
@@ -53,6 +54,7 @@ string Book::GetAuthor() const { //can be called for the private variable
 }
 
 void Book::SetCopyrightyear(int copyrightyearToSet) { //sets the private variable
+
     copyrightyear = copyrightyearToSet;
 }
 
@@ -131,7 +133,7 @@ int main(){
     
     //prints out the following of the books
     cout << "Your Books Are The Following:" << endl;
-    fantasy.print();
+    fantasy.print(); //This and the following prints out all user input of each book for a complete book (object)
     horror.print();
     romance.print();
     comedy.print();
