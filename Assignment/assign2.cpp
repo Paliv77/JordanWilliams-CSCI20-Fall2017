@@ -3,6 +3,7 @@
 *Lab: Assignment 2
 *Date: 10/6/17
 *Desc: A program that takes in a total, then calculates and prints out the sales tax in each city's county,state,city, and special.
+*Rates taken from: https://www.taxrates.com/state-rates/
 */
 
 #include <iostream>
