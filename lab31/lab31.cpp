@@ -46,3 +46,26 @@ int main(){
    
    return 0;
 }
+
+/*
+User 1:
+How many smart phones do you have: 2
+How many regular phones do you have: 0
+How many tablets: 0
+How many data in gbs would you like: 5
+AT&T Family Plans
+
+User 2:
+How many smart phones do you have: 2
+How many regular phones do you have: 1
+How many tablets: 1
+How many data in gbs would you like: 15
+AT&T Unlimited Choice Plan
+
+User 3:
+How many smart phones do you have: 0
+How many regular phones do you have: 1
+How many tablets: 0
+How many data in gbs would you like: 0
+AT&T Family Plans
+*/
