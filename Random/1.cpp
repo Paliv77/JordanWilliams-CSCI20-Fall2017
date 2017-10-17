@@ -1,155 +1,155 @@
 #include <iostream>
 #include <string>
-#include <math.h> //rounds
 using namespace std;
 
-class Item {
-    public:
-        void SetState(double stateToSet);//Mutator
-        double GetState() const;//Accessor
-        
-        void SetCounty(double countyToSet);//Mutator
-        double GetCounty() const;//Accessor
-        
-        void SetCity(double cityToSet);//Mutator
-        double GetCity() const;//Accessor
-        
-        void SetSpecial(double specialToSet);//Mutator
-        double GetSpecial() const;//Accessor
 
-        void SetAmount(double amountToSet);//Mutator
-        double GetAmount() const;//Accesso
+int main () {
+    bool decision = 0;
+    
+    string name = "";
+    string filing_status = "";
+    double gross_wage = 0.0;
+    double tax_withheld = 0.0;
+    double refund = 0.0;
+    double tax = 0.0;
+    int x = 0;
+    
+    //deductions
+    double single_deduction = 10400;
+    double married_deduction = 16750;
+    
+    //single tax table:
+    
+    //0 to 9,325
+    double single_tier1 = gross_wage * 0.10;
+    //9,326 to 37,950
+    double single_tier2 = 932.50 + (gross_wage - 9325) / 0.15;
+    //37,951 to 91,900
+    double single_tier3 = 5226.25 + (gross_wage - 37950) / 0.25;
+    //91,901 to 191,650
+    double single_tier4 = 18713.75 + (gross_wage - 91900) / 0.28;
+    //191,651 to 416,700
+    double single_tier5 = 46643.75 + (gross_wage - 191650) / 0.33;
+    //416,700+
+    double single_tier6 = 120910.25 + (gross_wage - 416700) / 0.396;
+    
+    //married tax table:
+    
+    //0 to 18,650
+    double married_tier1 = gross_wage * 0.10;
+    //18,650 to 75,900
+    double married_tier2 = 1865 + (gross_wage - 18650) / 0.15;
+    //75,901 to 153,100
+    double married_tier3 = 10452.50 + (gross_wage - 75900) / 0.25;
+    //153,101 to 233,350
+    double married_tier4 = 29752.50 + (gross_wage - 153100) / 0.28;
+    //233,350 to 416,700
+    double married_tier5 = 52222.50 + (gross_wage - 233350) / 0.33;
+    //416,700 +
+    double married_tier6 = 112728 + (gross_wage - 470700) / 0.396;
+    
+    cout << "Please enter the name: ";
+    cin >> name;
+    
+    cout << "Please enter the filing status(single or married): ";
+    cin >> filing_status; //married or single
+    
+    cout << "Please enter the gross wage: ";
+    cin >> gross_wage;
+    
+if (gross_wage <= 18650) {
+    x = 1;
+}
+else if (gross_wage >= 18650 && gross_wage <= 75900) {
+    x = 2;
+}
+else if (gross_wage >= 75901 && gross_wage <= 153100) {
+    x = 3;
+}
+else if (gross_wage >= 153101 && gross_wage <= 233350) {
+    x = 4;
+}
+else if (gross_wage >= 233350 && gross_wage <= 416700) {
+    x = 5;
+}     
+else if (gross_wage >= 416700){
+    x = 6;
+}
 
-        void SetCityName(string cityNameToSet);//Mutator
-        string GetCityName() const;//Accesso
+
+
+
+
+
+
+    
+    cout << "Please enter the tax withheld: ";
+    cin >> tax_withheld;
+    
+    //sets the bool to either married or single, to then decide either first switch or default.
+    if (filing_status == "married") {
+       decision = 1;
+    }
+    else {
+        decision = 0;
+    }
+    //going to be 2 switches here for the bool upon single/married. Default will be for single(bool 0).
+    if (decision == 1) {
         
-        double GetStateTax(double GetAmount(), double GetState()) const;
-        
-        void print() { //prints out the receipt for an object with rounding 2 digits and calculations.
-            cout << "---------------------------------------" << endl; //boarder
-            cout << "---------------------------------------" << endl;
-            cout << "Sales tax broken down for: " << GetCityName() << endl; //This gets information from int main's CityName sets (line 136)
-            cout << "***************************************" << endl; //boarder
-            cout << "The State tax is: " << GetStateTax() << endl; //round makes it round to 2 digits - calcs state tax
-            cout << "The County tax is " << round((GetAmount() * GetCounty()) * 100.00) / 100.00 << endl;//rounds and calcs county tax
-            cout << "The City tax is "   << round((GetAmount() * GetCity()) * 100.00) / 100.00 << endl;//rounds and calcs city tax
-            cout << "The Speical tax is " << round((GetAmount() * GetSpecial()) * 100.00) / 100.00 << endl;//rounds and calcs special tax
-            cout << "The total amount with tax is: " << round(((GetAmount() + (GetAmount() * GetState()) + (GetAmount() * GetCounty()) + (GetAmount()  * GetCity()) + (GetAmount() * GetSpecial()))) * 100.00) / 100.00 << endl; //rounds and calcs total tax
+    //conversions to int from double
+    int gross_wage = gross_wage * 100;
+    int tax_withheld = tax_withheld * 100;
+    int refund = refund * 100;
+    int tax = tax * 100;
+  
+        //add if for tax is larger than witholding here??
+        switch (x) { //if married
+            case 1:
+            {
+                tax = married_tier1;
+                refund = (married_deduction + tax_withheld) - tax;
+                cout << "Name: " << name << endl;
+                cout << "Total Gross Adjusted Income: " << gross_wage << endl;
+                cout << "Total tax owed: " << tax << endl;
+                cout << name << " is entitled to a REFUND of: " << refund;
+                break;
+            }
+            case 2:
+            {
+                tax = married_tier2;
+                refund = (married_deduction + tax_withheld) - tax;
+                break;
+            }
+            case 3:
+            {
+                tax = married_tier3;
+                refund = (married_deduction + tax_withheld) - tax;
+                break;
+            }
+            case 4:
+            {
+                tax = married_tier4;
+                refund = (married_deduction + tax_withheld) - tax;
+                break;
+            }
+            case 5:
+            {
+                tax = married_tier5;
+                refund = (married_deduction + tax_withheld) - tax;
+            }
+            case 6:
+            {
+                tax = married_tier6;
+                refund = (married_deduction + tax_withheld) - tax;
+            }
+            default: {
+                
+            }
+
+            
         }
-    private: //private variables
-        double state;
-        double county;
-        double city;
-        double special;
-        double amount;
-        string cityName;
-        double StateTax;
-};
-
-double Item::GetStateTax(double GetAmount(), double GetState()) const {
-   StateTax = round((GetAmount() * GetState()) * 100.00) / 100.00;
-   return StateTax;
-}
-
-void Item::SetCityName(string cityNameToSet) { //sets the private variable
-    cityName = cityNameToSet;
-}
-string Item::GetCityName() const { //can be called for the private variable
-    return cityName;
-}
-void Item::SetAmount(double amountToSet) {
-    amount = amountToSet;
-}
-double Item::GetAmount() const {
-    return amount;
-}
-void Item::SetState(double stateToSet) {
-    state = stateToSet;
-}
-double Item::GetState() const {
-    return state;
-}
-void Item::SetCounty(double countyToSet) {
-    county = countyToSet;
-}
-double Item::GetCounty() const {
-    return county;
-}
-void Item::SetCity(double cityToSet) { 
-    city = cityToSet;
-}
-double Item::GetCity() const {
-    return city;
-}
-void Item::SetSpecial(double specialToSet) {
-    special = specialToSet;
-}
-double Item::GetSpecial() const {
-    return special;
-}
-
-int main(){
-    //initialized vars
-    double state = 0.0;
-    double county = 0.0;
-    double city = 0.0;
-    double special = 0.0;
-    double amount = 0.0;
-    string cityName = "";
-
-    //Each object is a city that is included on the reciept
-    Item Chico_CA; 
-    Item Paradise_CA;
-    Item Sacramento_CA;
-    Item LasVegas_NV;
-    Item Pheonix_AZ;
-    
-    //Each below sets a specific tax value to the city
-    Chico_CA.SetState(0.06); //value of state tax in CA
-    Chico_CA.SetCounty(0.25); //value of Butte County tax via Chico
-    Chico_CA.SetCity(0.0); //Value of Chico's tax
-    Chico_CA.SetSpecial(0.01); //value of CA's sepcial tax
-    
-    Paradise_CA.SetState(0.06);
-    Paradise_CA.SetCounty(0.25);
-    Paradise_CA.SetCity(0.5);
-    Paradise_CA.SetSpecial(0.01);
-    
-    Sacramento_CA.SetState(0.06);
-    Sacramento_CA.SetCounty(0.25);
-    Sacramento_CA.SetCity(0.5);
-    Sacramento_CA.SetSpecial(1.5);
-    
-    LasVegas_NV.SetState(4.6);
-    LasVegas_NV.SetCounty(3.65);
-    LasVegas_NV.SetCity(0);
-    LasVegas_NV.SetSpecial(0);//not clear what the tax is generally
-
-    Pheonix_AZ.SetState(5.6);
-    Pheonix_AZ.SetCounty(0.7);
-    Pheonix_AZ.SetCity(2.3);
-    Pheonix_AZ.SetSpecial(0);//not clear what the tax is generally
-    
-    //sets the city name to be printed
-    Chico_CA.SetCityName("Chico,CA");
-    Paradise_CA.SetCityName("Paradise,CA");
-    Sacramento_CA.SetCityName("Sacramento,CA");
-    LasVegas_NV.SetCityName("LasVegas,NV");
-    Pheonix_AZ.SetCityName("Pheonix,AZ");    
-    
-    cout << "Enter amount: ";//enter the input
-    cin >> amount;//stores the input here, then below sets the input to use for different objects for the receipt
-    Chico_CA.SetAmount(amount);
-    Paradise_CA.SetAmount(amount);
-    Sacramento_CA.SetAmount(amount);
-    LasVegas_NV.SetAmount(amount);
-    Pheonix_AZ.SetAmount(amount);
-    //Prints the the amount taxed in each state
-    Chico_CA.print();
-    Paradise_CA.print();
-    Sacramento_CA.print();
-    LasVegas_NV.print();
-    Pheonix_AZ.print();
+    }
+//print end result:
     
     return 0;
 }
