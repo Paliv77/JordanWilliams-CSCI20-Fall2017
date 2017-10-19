@@ -15,6 +15,7 @@ int main () {
     int random = 0;
     int user_num = 0;
     int i = 0;
+    
     srand (time(0)); // makes number always random and not the same.
     random = rand() % 50 +1; //Provides random number 1-50
     
@@ -53,3 +54,37 @@ int main () {
     
     return 0;
 }
+
+/*
+***********************************************************
+Welcome to the matching game.
+A random number will be generated and you guess that number.
+***********************************************************
+34
+Enter value between 1 - 50: -1
+1
+2
+3
+4
+5
+Re-enter value between 1-50: 51
+1
+2
+3
+4
+5
+Re-enter value between 1-50: 20
+1
+2
+3
+4
+5
+Too low, guess another number: 40
+1
+2
+3
+4
+5
+Too high, guess another numer: 34
+Congrats, you've guessed the correct number: 34
+*/

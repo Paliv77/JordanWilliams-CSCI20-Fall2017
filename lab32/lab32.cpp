@@ -75,12 +75,12 @@ int main () {
     tax = tax - tax_withheld; //calculates the resulting amount of tax versus tax_withheld
     
     switch(status) { //switch to decide the value of deductions to either single or married
-        case 's':
+        case 's': //if status is single - this will be the deduction
         {
             deduction = deduction + 6350.0;
             break;
         }
-        case 'm':
+        case 'm': //if status is single - this will be the deduction
         {
             deduction = deduction + 12700.0;
             break;
@@ -92,10 +92,10 @@ int main () {
     refund = deduction - tax; //total of refund
     tax = tax - refund; //total of tax
     
-     if(refund > tax) { //when refund is greater, no tax is owed
+    if(refund > tax) { //when refund is greater, no tax is owed
         tax = 0.0;
     }
-    else (tax > refund) { //when tax is greater, no refund is given
+    else if (tax > refund) { //when tax is greater, no refund is given
         refund = 0;
     }
     

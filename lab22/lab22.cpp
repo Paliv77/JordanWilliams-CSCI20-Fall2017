@@ -12,14 +12,15 @@ using namespace std;
 int RandomNumber () //function acts as a number generator
 {
     srand (time(0)); // makes number always random and not the same.
+    int random = rand() % 50 +1; //Provides random number 1-50
     
-    cout << "Your number between 1 - 100 is: "
-         << rand() % 100 +1; //Provides random number 1-100
+    return random;
 }
 
 int main() {
+    int random = 0;
     
     RandomNumber(); // the complete function being ran
-    
+    cout << random;
     return 0;
 }
