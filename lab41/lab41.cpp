@@ -20,8 +20,9 @@ class ArrayTools { //creates a class of various array tools
         int Search (int find); //prototype for the search function
     
     private:
-        int _myArray[];
         int _size;
+        int _myArray[];
+
 };
 //the search function to find a specific number in the array
 int ArrayTools::Search(int find){
@@ -32,10 +33,8 @@ int ArrayTools::Search(int find){
             flag = true;
             return i; 
         }
-        else if(flag == false) {
-        return -1;
-        }
     }
+    return -1;
 }
 //function to find the sum
 int ArrayTools::Find_sum() {

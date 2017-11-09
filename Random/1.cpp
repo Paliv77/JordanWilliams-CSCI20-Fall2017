@@ -1,197 +1,101 @@
-/*Name: Jordan Williams
- *Date: 10/26/2017
- *Project: 3.0 Assignment - Game
- *Desc: A game to play Hi Ho! Cherry-O vers a computer.
- *The RULES are from: https://www.hasbro.com/common/instruct/Hi_Ho_Cherry_O_2006.pdf
-*/
+//http://ecomputernotes.com/cpp/classes-in-c/array-of-objects
+//http://www.cs.fsu.edu/~jestes/cop3330/notes/arrayobj.html
 
-
-
-#include <iostream>
-#include <string>
+#include<iostream>
+#include<string>
 
 using namespace std;
-
-class ArrayTools {
+class Item {
     
     public:
     
-    int Find_min(int min,int max); //Determines Min. based on parameters
-    int Find_max(int min,int max); //Determines 
-    int Find_sum();
-    int Num_even();
-    int Num_odd();
-    int Search(int find_number);
-    string ls_sorted();
+    Item(); //Default Constructor
+    Item(string name, int quantity, double price); //Overload Constructor
     
-    ArrayTools();
-    ArrayTools(int array_one[], int size);
-    void Print() const;
+    void Print() const; //Print Function
+    
+    //Mutator Functions
+    void SetName(string name);
+    void SetQuantity(int quantity);
+    void SetPrice(double price);
+    
+    //Accessor Functions
+    const string GetName();
+    const int GetQuantity();
+    const double GetPrice();
     
     private:
-    
-    int array[];
-    int size_;
-    string sorted_;
-
+    //Class Variables
+    string name_;
+    int quantity_;
+    double price_;
     
 };
 
 
-ArrayTools::ArrayTools() {
+Item::Item() {
     
-    int input = 0;
-    size_ = 10;
+    name_ = "Un-Available";
+    quantity_ = 0;
+    price_ = 0.00;
     
-    for (int i = 0; i < size_; i++) {
-        
-        array[i] = input;
-        input++;
-    }
 }
 
 
-ArrayTools::ArrayTools(int array_one[], int size) {
+Item::Item(string name, int quantity, double price) {
     
-    for (int i = 0; i < size; i++) {
-        
-        array[i] = array_one[i];
-        
-    }
+    name_ = name;
+    quantity_ = quantity;
+    price_ = price;
     
-    size_ = size;
 }
 
 
-void ArrayTools::Print() const {
-    for (int i = 0; i < size_; i++) {
-        cout << array[i] << " ";
-    }
-    cout << endl;
-    return;
-}
-
-int ArrayTools::Find_min(int min,int max) {
-    int finding_min = array[min];
-    for (int i = 0; i < size_; i++) {
-        if(array[min] > array[i]) {
-            finding_min = array[i];
-        }
-    }
-    return finding_min;
+void Item::Print() const {
+    
+    cout <<  name_ << "         " << quantity_ << "       $ " << price_ << endl;
+    
 }
 
 
-
-int ArrayTools::Find_max(int min,int max) {
+void Item::SetName(string name) {
     
-    int finding_max = array[min];
+    name_ = name;
     
-    for (int i = min; min <= max; min++) {
-        
-        if(array[min] > finding_max) {
-            
-            finding_max = array[min];
-        }
-    }
-    
-    return finding_max;
 }
 
 
-int ArrayTools::Find_sum() {
+const string Item::GetName() {
     
-    int sum = 0;
-    
-    for (int i = 0; i < size_; i++) {
-        
-        sum = sum + array[i];
-    }
-    
-    return sum;
+    return name_;
 }
 
 
-int ArrayTools::Num_odd() {
+void Item::SetQuantity(int quantity) {
     
-    int odd_ = 0;
+    quantity_ = quantity;
     
-    for (int i = 0; i < size_; i++) {
-        
-        if((array[i] % 2) == 1) {
-            
-            odd_++;
-        }
-    }
-    
-    return odd_;
 }
 
 
 
-int ArrayTools::Num_even() {
+const int Item::GetQuantity() {
     
-    int even_ = 0;
+    return quantity_;
     
-    for (int i = 0; i < size_; i++) {
-        
-        if((array[i] % 2) == 0) {
-            
-            even_++;
-        }
-    }
-    
-    return even_;
-}
-        
-     
-int ArrayTools::Search(int find_number) {
-    
-    int i;
-    
-    for (i = 0; i < size_; i++) {
-        
-        if(array[i] == find_number) {
-            
-            return i;
-        }
-        
-        else {
-            
-            return -1;
-        }
-    }
 }
 
 
-string ArrayTools::ls_sorted() {
+void Item::SetPrice(double price) {
     
-    string sorted_;
-    int max_val = array[0];
-    int sort = 0;
-    int i = 0;
+    price_ = price;
     
-    for (i = 0; i < size_; i++) {
-        
-        if(array[i] >= max_val) {
-            
-            sort++;
-            
-        }
-        
-    }
-    
-    if (sort >= 9) {
-        
-        sorted_ = "True";
-    }
-    
-    else {
-        
-        sorted_ = "False";
-    }
+}
 
-    return sorted_;
+
+const double Item::GetPrice() {
+    
+    return price_;
     
 }
 
@@ -199,22 +103,96 @@ string ArrayTools::ls_sorted() {
 int main() {
     
     const int SIZE = 10;
-    int myArray[SIZE];
+    int product_number = 0;
+    int count = 0;
+    double total = 0.00;
+    char continue_shopping = 'y';
     
-    for (int i = 0; i < SIZE; i++) {
+    Item cart[SIZE * 20];
+    Item inventory[SIZE] = {
         
-        cin >> myArray[i];
-    }
+        Item(" Harry Potter          ",      8,     3.25),
+        Item(" Moby Dick             ",      3,     2.55),
+        Item(" Hamlet                ",      8,     5.65),
+        Item(" The Great Gatsby      ",      2,     1.55),
+        Item(" Nineteen Eighty Four  ",      9,     4.25),
+        Item(" Alice in Wonderland   ",      4,     2.75),
+        Item(" Great Expectations    ",      9,     3.25),
+        Item(" The Catcher In The Rye",      2,     2.15),
+        Item(" The Grapes of Wrath   ",      4,     1.75),
+        Item("The Bible             ",       1,     1.15)
+    };
+
     
-    ArrayTools a(myArray, SIZE);
+    while ((continue_shopping == 'y') || (continue_shopping == 'Y')) {
+        
+        cout << endl;
+        cout << "       BOOK        " << "            QUANTITY" << "     PRICE" << endl;
+        cout << "---------------------------------------------------" << endl;
+        
+        for (int i = 0; i < SIZE; i++) {
+            
+            cout << i + 1 << ") ";
+            
+            inventory[i].Print();
+            
+        }
+        
+        cout << endl;
+        cout << "Enter the item number to add to your cart. Or enter '0' to finish and check-out:" << endl;
+        cin >> product_number;
+        
+        int num = product_number - 1;
+        
+        if (product_number == 0) {
+            
+            continue_shopping = 'n';
+            
+        }
+        
+        else {
+            
+            if (inventory[num].GetQuantity() >  0) {
+                
+                inventory[num].SetQuantity(inventory[num].GetQuantity() - 1);
+                
+                cart[count] = inventory[num];
+                
+                cout << cart[count].GetName() << " was added to your cart."  << endl;
+                
+                count++;
+                
+            }
+            
+            else {
+                
+                cout << "Out of stock, sorry!" << endl;
+                cout << "Enter the item number to add to your cart." << endl;
+                cin >> product_number;
+                
+            }
+            
+            cout << "(y or n) Would you like to keep shopping?" << endl;
+            cin >> continue_shopping;
+            
+            }
+        }
+        
+        cout << "Current Shopping Cart:" << endl;
+        
+        for (int i = 0; i <= count; i++)  {
+            
+            if(cart[i].GetPrice() > 0.000001) {
+                
+                cout << cart[i].GetName() << "       $" << cart[i].GetPrice() << endl;
+                
+                total += cart[i].GetPrice();
+            }
+        }
     
-    a.Print();
     
-    cout << "Min: " << a.Find_min(0,4) << endl;
-    cout << "Max: " << a.Find_max(5,10) << endl;
-    cout << "Sum = " << a.Find_sum() << endl;
-    cout << "Search 10: " << a.Search(10) << endl;
-    cout << "Sorted? " << a.ls_sorted() << endl;
+    cout << endl;
+    cout << "Total: $" << total;
     
     return 0;
 }
