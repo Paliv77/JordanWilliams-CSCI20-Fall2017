@@ -36,8 +36,6 @@ void Album::Print() const{
 
 void Album::GettingAlbums(){
     
-
-    
     //inbetween variables to help set to private
     string initial_name =" ";
     int initial_inv = 0;
